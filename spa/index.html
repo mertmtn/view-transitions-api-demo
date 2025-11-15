@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Ürün Mağazası - View Transitions Demo</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>🛍️ Modern Elektronik Mağazası</h1>
+      <p class="subtitle">Aradığınız herşey bu mağazada.</p>
+    </header>
+
+    <div class="products-grid" id="productsGrid"></div>
+
+    <div class="detail-view" id="detailView">
+      <button class="back-button" onclick="goBack()">← Ürünlere Dön</button>
+      <div class="detail-content" id="detailContent"></div>
+    </div>
+  </div>
+  <script>
+    var products = [];
+    document.addEventListener('DOMContentLoaded', function () {
+      // Always check if localStorage is ready, else fall back to fetch.
+
+      try {
+        const productsStr = localStorage.getItem("products");
+        if (productsStr) {
+          products = JSON.parse(productsStr);
+          renderProducts(products);
+        } else {
+          fetch('products.json')
+            .then(res => res.json())
+            .then(productsFromFile => {
+              localStorage.setItem("products", JSON.stringify(productsFromFile));
+              renderProducts(productsFromFile);
+            });
+        }
+      } catch (e) {
+        // fallback
+        fetch('products.json')
+          .then(res => res.json())
+          .then(productsFromFile => renderProducts(productsFromFile));
+      }
+    });
+    let currentView = 'grid';
+
+    function renderProducts(products) {
+      const grid = document.getElementById('productsGrid');
+      grid.innerHTML = products.map(product => `
+                <div class="product-card" onclick="showDetail(${product.ID})" 
+                     style="--product-image: product-image-${product.ID}; 
+                            --product-name: product-name-${product.ID}; 
+                            --product-price: product-price-${product.ID};">
+                    <img src="${product.Image}" alt="${product.Name}" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">${product.Name}</h3>
+                        <p class="product-description">${product.Description}</p>
+                        <div class="product-price">${product.Price}</div>
+                    </div>
+                </div>
+            `).join('');
+    }
+
+    function showDetail(productId) {
+      const product = products.find(p => p.ID === productId);
+      if (!product) return;
+
+      const detailContent = document.getElementById('detailContent');
+      detailContent.innerHTML = `
+                <div>
+                    <img src="${product.Image}" alt="${product.Name}" class="detail-image"
+                         style="view-transition-name: product-image-${product.ID};">
+                </div>
+                <div class="detail-info">
+                    <h2 style="view-transition-name: product-name-${product.ID};">${product.Name}</h2>
+                    <div class="detail-price" style="view-transition-name: product-price-${product.ID};">${product.Price}</div>
+                    <p class="detail-description">${product.Description}</p>
+                    
+                    <button class="buy-button" onclick="alert('Satın alma işlemi demo amaçlıdır!')">
+                        Sepete Ekle
+                    </button> 
+                </div>
+            `;
+
+      // Same-document view transition
+      if (document.startViewTransition) {
+        document.startViewTransition(() => {
+          document.getElementById('productsGrid').style.display = 'none';
+          document.getElementById('detailView').classList.add('active');
+          currentView = 'detail';
+        });
+      } else {
+        renderDetail()
+      }
+    }
+
+    function renderDetail() {
+      document.getElementById('productsGrid').style.display = 'none';
+      document.getElementById('detailView').classList.add('active');
+      currentView = 'detail';
+    }
+
+    function renderIndex() {
+      document.getElementById('detailView').classList.remove('active');
+      document.getElementById('productsGrid').style.display = 'grid';
+      currentView = 'grid';
+    }
+
+    function goBack() {
+      // Same-document view transition
+      if (document.startViewTransition) {
+        document.startViewTransition(() => {
+          renderIndex()
+        });
+      } else {
+        renderIndex()
+      }
+    }
+
+    // Sayfa yüklendiğinde ürünleri render et
+    renderProducts(products);
+ 
+    if (!document.startViewTransition) {
+      renderDetail()
+      console.warn('View Transitions API bu tarayıcıda desteklenmiyor.');
+    }
+    
+  </script>
+</body>
+
+</html>

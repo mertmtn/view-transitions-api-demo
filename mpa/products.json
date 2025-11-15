@@ -1,0 +1,58 @@
+ 
+  [
+    {
+      "ID": 1,
+      "Name": "Premium Kablosuz Kulaklık",
+      "Category": "Elektronik",
+      "Description": "Aktif gürültü engelleme özellikli",
+      "Image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop",
+      "Price": 2.499,
+      "InStock": true
+    },
+    {
+      "ID": 2,
+      "Name": "Akıllı Saat Pro",
+      "Category": "Elektronik",
+      "Description": "Sağlık takibi ve fitness özellikleri",
+      "Image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop",
+      "Price": 3.999,
+      "InStock": true
+    },
+    {
+      "ID": 3,
+      "Name": "Taşınabilir Bluetooth Hoparlör",
+      "Category": "Elektronik",
+      "Description": "360 derece ses deneyimi",
+      "Image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=400&fit=crop",
+      "Price": 1.299,
+      "InStock": true
+    },
+    {
+      "ID": 4,
+      "Name": "4K Aksiyon Kamerası",
+      "Category": "Elektronik",
+      "Description": "Ultra HD video kayıt",
+      "Image": "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400&h=400&fit=crop",
+      "Price": 4.599,
+      "InStock": true
+    },
+    {
+      "ID": 5,
+      "Name": "Mekanik Gaming Klavye",
+      "Category": "Elektronik",
+      "Description": "RGB aydınlatmalı mekanik tuşlar",
+      "Image": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&h=400&fit=crop",
+      "Price": 1.899,
+      "InStock": true
+    },
+    {
+      "ID": 6,
+      "Name": "Wireless Gaming Mouse",
+      "Category": "Elektronik",
+      "Description": "Yüksek hassasiyetli oyun faresi",
+      "Image": "https://images.unsplash.com/photo-1527814050087-3793815479db?w=400&h=400&fit=crop",
+      "Price": 899,
+      "InStock": true
+    }
+  ]
+ 

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ürün Detayı</title>
+    <link rel="stylesheet" href="main.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-button">← Ürünlere Dön</a>
+        </header>
+
+        <div id="detail-content">
+
+        </div>
+    </div>
+</body>
+
+<script>
+    // Get id from URL
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
+    let products = [];
+    try {
+        const productsStr = localStorage.getItem("products");
+        if (productsStr) {
+            products = JSON.parse(productsStr);
+        }
+    } catch (e) { products = []; }
+
+    const product = products.find(p => String(p.ID) === String(id));
+    if (product) {
+        document.getElementById('detail-content').innerHTML = `
+        <div>
+            <img src="${product.Image}" 
+                 alt="${product.Name}" class="detail-image">
+        </div>
+        <div class="detail-info">
+            <h2>${product.Name}</h2>
+            <div class="detail-price">${product.Price}₺</div>
+            <p class="detail-description">${product.Description}</p>
+            <button class="buy-button" onclick="alert('🛒 Ürün sepete eklendi!')">
+                🛒 Sepete Ekle
+            </button>
+        </div>
+      `;
+    }
+</script>
+
+</html>

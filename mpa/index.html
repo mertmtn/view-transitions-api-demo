@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Ürün Mağazası - View Transitions Demo</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>🛍️ Modern Elektronik Mağazası</h1>
+      <p class="subtitle">Aradığınız her şey burada</p>
+    </header>
+    <div class="products-grid" id="productsGrid">
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Always check if localStorage is ready, else fall back to fetch.
+      let products = [];
+      try {
+        const productsStr = localStorage.getItem("products");
+        if (productsStr) {
+          products = JSON.parse(productsStr);
+          renderProducts(products);
+        } else {
+          fetch('products.json')
+            .then(res => res.json())
+            .then(productsFromFile => {
+              localStorage.setItem("products", JSON.stringify(productsFromFile));
+              renderProducts(productsFromFile);
+            });
+        }
+      } catch (e) {
+        // fallback
+        fetch('products.json')
+          .then(res => res.json())
+          .then(productsFromFile => renderProducts(productsFromFile));
+      }
+
+      function renderProducts(products) {
+        const productsContainer = document.getElementById('productsGrid');
+        products.forEach(product => {
+          const productEl = document.createElement('div');
+          productEl.className = 'product-card';
+          productEl.innerHTML = `
+                <a href="product-detail.html?id=${product.ID}">
+                  <img src="${product.Image}"
+                       alt="${product.Name}"
+                       class="product-image">
+                  <div class="product-info">
+                    <h3 class="product-name">${product.Name}</h3>
+                    <p class="product-description">${product.Description}</p>
+                    <div class="product-price">${product.Price}₺</div>
+                  </div>
+                </a>
+              `;
+          productsContainer.appendChild(productEl);
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
