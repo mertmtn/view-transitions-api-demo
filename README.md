@@ -2,11 +2,12 @@
 
 A demo project showcasing the [View Transitions API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API) in modern browsers.  
 This repository provides two modes: a **Multi-Page App (MPA)** and a **Single Page App (SPA)** implementation to compare patterns.
+Also **None** repository is an empty boilerplate that makes you apply view transitions
 
 ## 🧰 Contents
 
-- `mpa/` — A simple multi-page implementation using native HTML/CSS/JS.  
-- `spa/` — A SPA implementation (e.g. using client routing) demonstrating how the API works in a single-page context.  
+- `mpa/` — Cross document view transitions (multi-page-MPA).
+- `spa/` — Same document view transitions (single-page-app).
 - `none/` — Not implemented View transitions as boilerplate.  
 - `products.json` — Contains products and its informations in the list.  
 
@@ -14,7 +15,8 @@ This repository provides two modes: a **Multi-Page App (MPA)** and a **Single Pa
 
 - Uses the View Transitions API to provide smooth transitions between sections/pages.  
 - Demonstrates how to integrate the API in both MPA and SPA scenarios.  
-- Lightweight, no heavy framework required for the MPA version.  
+- Lightweight, no heavy framework required for the MPA version.
+- Using native HTML/CSS/JS
 - Simple routing logic in the SPA version to illustrate navigation + transition handling.
 
 ## 🚀 Getting Started
@@ -36,5 +38,6 @@ This repository provides two modes: a **Multi-Page App (MPA)** and a **Single Pa
    cd mpa
    # OR for Single Page App
    cd spa
-3. Run a simple static server
-4. Interact with the demo: navigate between pages/sections and observe the transitions.
+3. Run a simple static http server
+   
+5. Interact with the demo: navigate between pages/sections and observe the transitions.
