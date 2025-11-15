@@ -39,5 +39,22 @@ Also **None** repository is an empty boilerplate that makes you apply view trans
    # OR for Single Page App
    cd spa
 3. Run a simple static http server
-   
-5. Interact with the demo: navigate between pages/sections and observe the transitions.
+   ```bash
+   npx http-server . -c-1
+
+4. Interact with the demo: navigate between pages/sections and observe the transitions.
+
+📚 Resources
+
+MDN Docs: https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API
+
+View Transitions - Bramus's Blog https://view-transitions.chrome.dev/
+
+Google for developers: https://developer.chrome.com/docs/web-platform/view-transitions
+
+Examples & patterns from the communites' blogs or videos
+
+📝 License
+
+This project is licensed under the MIT License.
+You are free to use, modify, and distribute it.
